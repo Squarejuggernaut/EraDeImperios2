@@ -1,17 +1,17 @@
 package juego;
 
 public class Posicion {
-	private int ejeX;
-	private int ejeY;
+	private double ejeX;
+	private double ejeY;
 
-	public Posicion(int ejeX, int ejeY) {
+	public Posicion(double ejeX, double ejeY) {
 		this.ejeX = ejeX;
 		this.ejeY = ejeY;
 	}
 	
-	public int calculadorDistancias(Posicion otroPunto) {
-		return (int) Math.sqrt(Math.pow(this.ejeX - otroPunto.ejeX, 2) +
-					 Math.pow(this.ejeY - otroPunto.ejeY, 2));
+	public double calculadorDistancias(Posicion otroPunto) {
+		return Math.sqrt(Math.pow(this.ejeX - otroPunto.ejeX, 2) +
+			   Math.pow(this.ejeY - otroPunto.ejeY, 2));
 	}
 
 	@Override

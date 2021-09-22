@@ -13,9 +13,12 @@ public class App {
 		
 		Unidad u1 = new Unidad(new Posicion(0, 0));
 		System.out.println(u1);
-		Unidad u2 = new Unidad(new Posicion(1, 1));
+		Unidad u2 = new Unidad(new Posicion(1.9, 1.9));
 		System.out.println(u2);
+		Unidad u3 = new Unidad(new Posicion(1.4, 1.4));
 		System.out.println(u1.distanciaCon(u2));
+		System.out.println(u1.puedeAtacar(u2)); // false
+		System.out.println(u1.puedeAtacar(u3)); // true
 	}
 
 }

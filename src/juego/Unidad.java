@@ -1,9 +1,8 @@
 package juego;
 
-public class Unidad {
-	private Posicion posicion;
-	private int salud;
-	
+public abstract class Unidad {
+	protected Posicion posicion;
+	protected int salud;
 	private static final int SALUD_INICIAL = 100;
 	
 	public Unidad(Posicion posicion) {
@@ -19,18 +18,14 @@ public class Unidad {
 		return this.posicion.calculadorDistancias(otraUnidad.posicion);
 	}
 	
-	public boolean puedeAtacar(Unidad otraUnidad) {
-		return this.distanciaCon(otraUnidad) < 2;
-	}
-	
 	public void atacar(Unidad otraUnidad) {
 		if (this.puedeAtacar(otraUnidad))
 			otraUnidad.recibirDanio();
 	}
+	
+	public abstract boolean puedeAtacar(Unidad otraUnidad);
 
-	public void recibirDanio() {
-		this.salud -= 10;
-	}
+	public abstract void recibirDanio();
 
 	@Override
 	public String toString() {

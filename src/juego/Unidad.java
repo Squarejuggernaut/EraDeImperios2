@@ -18,18 +18,10 @@ public abstract class Unidad {
 		return this.posicion.calculadorDistancias(otraUnidad.posicion);
 	}
 	
-	public void atacar(Unidad otraUnidad) {
-		if (this.puedeAtacar(otraUnidad))
-			otraUnidad.recibirDanio();
-	}
-	
 	public abstract boolean puedeAtacar(Unidad otraUnidad);
+	
+	public abstract void atacar(Unidad otraUnidad);
 
 	public abstract void recibirDanio();
-
-	@Override
-	public String toString() {
-		return "(" + posicion + ")";
-	}
 	
 }

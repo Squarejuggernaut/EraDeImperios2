@@ -13,6 +13,11 @@ public class Posicion {
 		return Math.sqrt(Math.pow(this.ejeX - otroPunto.ejeX, 2) +
 			   Math.pow(this.ejeY - otroPunto.ejeY, 2));
 	}
+	
+	public void desplazar(double nuevoX, double nuevoY) {
+		this.ejeX += nuevoX;
+		this.ejeY += nuevoY;
+	}
 
 	@Override
 	public String toString() {

@@ -28,5 +28,14 @@ public class PosicionTests {
 		Posicion p6 = new Posicion(6, 3);
 		assertEquals(5.385, p5.calculadorDistancias(p6), 0.001);
 	}
+	
+	@Test
+	public void desplazarPosicion() {
+		Posicion p1 = new Posicion(1, 1);
+		p1.desplazar(3, 2);
+		assertEquals("(4.0, 3.0)", p1.toString());
+		p1.desplazar(14, -3);
+		assertEquals("(18.0, 0.0)", p1.toString());
+	}
 
 }

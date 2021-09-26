@@ -7,35 +7,20 @@ import org.junit.Test;
 
 import juego.*;
 
-public class UnidadTests {
-	Unidad c1, c2, a1, a2, s1, s2;
+public class CaballeroTests {
+	Unidad c1, c2, c3;
 	
 	@Before
 	public void setUp() {
 		c1 = new Caballero(new Posicion(0, 0));
 		c2 = new Caballero(new Posicion(1, 1));
-		a1 = new Arquero(new Posicion(0, 0));
-		a2 = new Arquero(new Posicion(1, 1));
-		s1 = new Soldado(new Posicion(0, 0));
-		s2 = new Soldado(new Posicion(1, 1));
+		c3 = new Caballero(new Posicion(2, 2));
 	}
 
 	@Test
 	public void construyeUnidadCaballero() {
 		assertNotNull(c1);
 		assertNotNull(c2);
-	}
-	
-	@Test
-	public void construyeUnidadArqueria() {
-		assertNotNull(a1);
-		assertNotNull(a2);
-	}
-	
-	@Test
-	public void construyeUnidadSoldados() {
-		assertNotNull(s1);
-		assertNotNull(s2);
 	}
 	
 	@Test
@@ -57,21 +42,18 @@ public class UnidadTests {
 	}
 	
 	@Test
-	public void ArqueroPuedeAtacarTest() {
-		Unidad c3 = new Caballero(new Posicion(6, 6));
-		assertTrue(a1.puedeAtacar(c3)); // distancia: 8.485
-		Unidad a4 = new Arquero(new Posicion(8.4, -8.4));
-		assertTrue(a1.puedeAtacar(a4)); // 11.879
-		assertFalse(a2.puedeAtacar(s1)); // 2
-	}
-	
-	@Test
 	public void caballeroAtacaYHaceDanioTest() {
 		assertEquals(100, c2.getSalud());
 		c1.atacar(c2);
 		assertEquals(70, c2.getSalud());
 		c1.atacar(c2);
 		assertEquals(40, c2.getSalud());
+		c1.atacar(c2);
+		assertEquals(10, c2.getSalud());
+		c1.atacar(c3);
+		assertEquals(70, c3.getSalud());
+		c1.atacar(c3);
+		assertEquals(70, c3.getSalud());
 	}
 	
 	@Test

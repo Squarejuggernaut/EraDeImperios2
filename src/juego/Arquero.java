@@ -13,22 +13,21 @@ public class Arquero extends Unidad {
 	@Override
 	public boolean puedeAtacar(Unidad otraUnidad) {
 		double distancia = this.distanciaCon(otraUnidad);
-		return distancia <= 25 && distancia >= 5 && tieneFlechas();
+		
+		return this.estaVivo && otraUnidad.estaVivo &&
+			   distancia <= 25 && distancia >= 5 && tieneFlechas();
 	}
 
 	@Override
 	public void atacar(Unidad otraUnidad) {
 		if (this.puedeAtacar(otraUnidad)) {
-			otraUnidad.recibirDanio();
+			otraUnidad.recibirDanio(DANIO);
+			if (!otraUnidad.estaVivo)
+				this.robarDinero(otraUnidad);
 			this.flechas--;
 		} else {
 			this.recargarFlechas();
 		}
-	}
-
-	@Override
-	public void recibirDanio() {
-		this.salud -= DANIO;
 	}
 
 	private boolean tieneFlechas() {

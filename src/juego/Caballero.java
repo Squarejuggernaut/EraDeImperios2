@@ -13,23 +13,22 @@ public class Caballero extends Unidad {
 	@Override
 	public boolean puedeAtacar(Unidad otraUnidad) {
 		double distancia = this.distanciaCon(otraUnidad);
-		return distancia <= 3 && distancia >= 1 && !caballoEstaAsustado();
+		
+		return this.estaVivo && otraUnidad.estaVivo &&
+			   distancia <= 3 && distancia >= 1 && !caballoEstaAsustado();
 	}
 
 	@Override
 	public void atacar(Unidad otraUnidad) {
 		if (this.puedeAtacar(otraUnidad)) {
-			otraUnidad.recibirDanio();
+			otraUnidad.recibirDanio(DANIO);
+			if (!otraUnidad.estaVivo)
+				this.robarDinero(otraUnidad);
 			this.valentia -= 25;
 		} else {
 			this.huir();
 			this.calmar();
 		}
-	}
-
-	@Override
-	public void recibirDanio() {
-		this.salud -= DANIO;
 	}
 
 	private boolean caballoEstaAsustado() {

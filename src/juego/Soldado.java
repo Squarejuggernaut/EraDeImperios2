@@ -13,22 +13,21 @@ public class Soldado extends Unidad {
 	@Override
 	public boolean puedeAtacar(Unidad otraUnidad) {
 		double distancia = this.distanciaCon(otraUnidad);
-		return distancia <= 1.5 && distancia > 0 && !estaCansado();
+
+		return this.estaVivo && otraUnidad.estaVivo &&
+			   distancia <= 1.5 && distancia > 0 && !estaCansado();
 	}
 
 	@Override
 	public void atacar(Unidad otraUnidad) {
 		if (this.puedeAtacar(otraUnidad)) {
-			otraUnidad.recibirDanio();
+			otraUnidad.recibirDanio(DANIO);
+			if (!otraUnidad.estaVivo)
+				this.robarDinero(otraUnidad);
 			this.energia -= 25;
 		} else {
 			this.descansar();
 		}
-	}
-
-	@Override
-	public void recibirDanio() {
-		this.salud -= DANIO;
 	}
 
 	private boolean estaCansado() {
